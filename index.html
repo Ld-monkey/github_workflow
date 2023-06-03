@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Github Workflow</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/dracula.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<!-- <link rel="stylesheet" href="plugin/highlight/monokai.css"> -->
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-markdown>
+				<section data-template>
+					## GitHub Worflow
+					Comment va-t-on s'organiser grâce à GitHub ?
+					---
+					## O + Offrant
+
+					+ 2 projets
+					   + Back-end
+					   + Front-end
+					+ Même logique dans GitHub pour la soumission des modifications apporter dans le code.
+					---
+					## GitHub workflow
+
+					Dans l'ordre des actions *recommendées*
+
+					1. Créer une **branche**
+					2. Faire une modification dans le code
+					3. Créer une **pull request**
+					4. La review du code
+					5. Merge votre **pull request**
+					6. Supprimer la branche
+					---
+
+					![architecture](/img/architecture-github.png)
+
+					---
+
+					## 1. Créer une branche
+
+					+ Bonne pratique = ne pas travailler sur la branche **master**
+
+					1. Se positionner sur la **branche dev** (development)
+					2. A partir de la branche dev, créer une branche relative à l'issue.
+					(Exemple ajouter une navbar)
+
+					```sh
+					git checkout dev
+					git checkout -b navbar
+					```
+					---
+
+					## 2. Modifier le code
+
+					Dans la branche navbar
+
+					```sh
+					git status
+					git add -A
+					git commit -m "Add search bar to navbar"
+					...
+					git add -A
+					git commit -m "Add logo to navbar"
+					```
+
+					+ Les commentaires des commits doivent être en anglais.
+
+					Lorsque que l'on est satifait des modifications apportées
+
+					```sh
+					git push
+					```
+					---
+
+					## 3. Créer une pull request
+
+					+ Pour créer une pull request on se retrouve sur GitHub
+
+					![pull request](/img/pull-request.png)
+
+					+ Clique sur Compare & pull request
+
+					---
+
+					![accross dev branch](/img/develop-to-branch.png)
+
+					Et on compare par rapport à la **branche dev**
+
+					---
+
+					## 4. Review du code
+					Ensuite il y a une review
+
+					   + 2 situations possibles
+
+					   ![2 situations](https://media.giphy.com/media/dBdgBKZAQapzoxD668/giphy.gif)
+					---
+
+					+ Soit le code est validé = pull request mergée sur la branche dev et l'issue fermée.
+
+					![genius](https://media.giphy.com/media/Wlmx7EzlZuwNQVtryR/giphy.gif)
+					
+					---
+
+					   + Soit il y a discussion, modification puis validation.
+					
+					   ![confrontation](https://media.giphy.com/media/l1J9uLBPjqCVIM2GI/giphy.gif)
+
+					---
+
+					   + Il existe un 3ème cas: **les conflits**
+					   ![conflits](https://media.giphy.com/media/NTur7XlVDUdqM/giphy.gif)
+
+					   Des conflits surviennent souvent lorsque des coéquipiers travaillent sur différentes branches qui affectent un fichier commun.
+
+					---
+
+					   ![conflit pull request](img/conflit-pull-request.png)
+
+					   Sa branche ne reflète plus l'état de la branche **dev** et que la branche dev **a changé parce que quelqu'un d'autre a fusionné** (avant lui) **les changements** affectant son ou ses fichiers.
+
+					---
+
+					   Ne pas paniquer !!
+
+					   ![panic](https://media.giphy.com/media/1FMaabePDEfgk/giphy.gif)
+
+					---
+
+					   Créer quand même une **pull request**
+
+					   ![create pull request](img/create-pull-request.png)
+
+					---
+
+						Essayer de **résoudre** le conflit
+
+						![resolve conflit](img/resolve-conflicts.png)
+
+						Peut être directement résolut depuis l'éditeur de GitHub
+
+					---
+
+					Si résolut dans GitHub 
+
+					   + Appuyer sur **Mark as resolved**
+
+					![mark as resolved](img/mark-as-resolve.png)
+
+					   + Puis cliquer sur le bouton **Commit merge**
+
+					![commit merge](img/commit-merge.png)
+
+					---
+
+					Ensuite, si tout ce passe bien la branche est libérée du conflit et la pull request peut être mergée sur la branche dev.
+
+					![hourra](https://media.giphy.com/media/enf5VE8mu4lFVYbt6M/giphy.gif)
+
+					---
+
+					Une bonne pratique pour éviter les **merge conflicts**:
+					1. C'est revenir sur la **branche dev** et de **pull** (pour récupérer les modifications).
+
+					```sh
+					$ git branch
+					dev
+					navbar
+
+					$ git checkout dev
+
+					$ git pull
+					```
+
+					---
+
+					   + Revenir sur la branche sur laquelle vous travaillez et merger cette branche sur la banche dev (gérer les conflits s'il y en a).
+
+
+					```sh
+					$ git checkout navbar
+
+					$ git merge dev
+
+					# You make some changes on the files of the navbar branch
+					```
+
+					   + Une fois les modification faite, faire un push suivi d'une pull request sur GitHub.
+
+					```sh
+					$ git add -A
+
+					$ git commit -m "Change conflit on navbar"
+
+					$ git push
+					```
+
+					---
+
+					# Conclusion :
+
+					  + Créer une *nouvelle branche à partir de la branche dev* (pas master).
+					  + *Soumettre les pull request* sur GitHub par *rapport à la branche dev* (pas par rapport à master).
+					  + Avant de soumettre une pull request sur GitHub *une bonne pratique* et de *récupérer les modifications de de la branche dev* et de régler les conflits de sa branche en interne.
+
+					---
+
+					# Références :
+
+					   + [How to Use Git and GitHub in a Team like a Pro](https://www.freecodecamp.org/news/how-to-use-git-and-github-in-a-team-like-a-pro/)
+					   + [reveal.js](https://revealjs.com/)
+
+					---
+
+					```sh
+					$ git branch
+					navbar
+
+					$ git checkout dev
+
+					$ git pull
+
+					$ git checkout navbar
+
+					$ git merge dev
+
+					# You make some changes on the files of the navbar branch
+
+					$ git add -A
+
+					$ git commit -m "Change conflit on navbar"
+
+					$ git push
+					```
+
+				</section>
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+</html>
