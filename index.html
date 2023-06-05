@@ -18,7 +18,7 @@
 		<div class="slides">
 			<section data-markdown>
 				<section data-template>
-					## GitHub Worflow
+					## GitHub Workflow
 					Comment va-t-on s'organiser grâce à GitHub ?
 					---
 					## O + Offrant
@@ -30,7 +30,7 @@
 					---
 					## GitHub workflow
 
-					Dans l'ordre des actions *recommendées*
+					Dans l'ordre des actions *recommandées*
 
 					1. Créer une **branche**
 					2. Faire une modification dans le code
@@ -48,12 +48,12 @@
 
 					+ Bonne pratique = ne pas travailler sur la branche **master**
 
-					1. Se positionner sur la **branche dev** (development)
-					2. A partir de la branche dev, créer une branche relative à l'issue.
+					1. Se positionner sur la **branche develop** (development)
+					2. A partir de la branche develop, créer une branche relative à l'issue.
 					(Exemple ajouter une navbar)
 
 					```sh
-					git checkout dev
+					git checkout develop
 					git checkout -b navbar
 					```
 					---
@@ -73,7 +73,7 @@
 
 					+ Les commentaires des commits doivent être en anglais.
 
-					Lorsque que l'on est satifait des modifications apportées
+					Lorsque que l'on est satisfait des modifications apportées
 
 					```sh
 					git push
@@ -90,9 +90,9 @@
 
 					---
 
-					![accross dev branch](/img/develop-to-branch.png)
+					![accross develop branch](/img/develop-to-branch.png)
 
-					Et on compare par rapport à la **branche dev**
+					Et on compare par rapport à la **branche develop**
 
 					---
 
@@ -104,7 +104,7 @@
 					   ![2 situations](https://media.giphy.com/media/dBdgBKZAQapzoxD668/giphy.gif)
 					---
 
-					+ Soit le code est validé = pull request mergée sur la branche dev et l'issue fermée.
+					+ Soit le code est validé = pull request mergée sur la branche develop et l'issue fermée.
 
 					![genius](https://media.giphy.com/media/Wlmx7EzlZuwNQVtryR/giphy.gif)
 					
@@ -125,7 +125,7 @@
 
 					   ![conflit pull request](img/conflit-pull-request.png)
 
-					   Sa branche ne reflète plus l'état de la branche **dev** et que la branche dev **a changé parce que quelqu'un d'autre a fusionné** (avant lui) **les changements** affectant son ou ses fichiers.
+					   Sa branche ne reflète plus l'état de la branche **develop** et que la branche develop **a changé parce que quelqu'un d'autre a fusionné** (avant lui) **les changements** affectant son ou ses fichiers.
 
 					---
 
@@ -145,11 +145,11 @@
 
 						![resolve conflit](img/resolve-conflicts.png)
 
-						Peut être directement résolut depuis l'éditeur de GitHub
+						Peut être directement résolu depuis l'éditeur de GitHub
 
 					---
 
-					Si résolut dans GitHub 
+					Si résolu dans GitHub 
 
 					   + Appuyer sur **Mark as resolved**
 
@@ -161,39 +161,39 @@
 
 					---
 
-					Ensuite, si tout ce passe bien la branche est libérée du conflit et la pull request peut être mergée sur la branche dev.
+					Ensuite, si tout se passe bien la branche est libérée du conflit et la pull request peut être mergée sur la branche develop.
 
 					![hourra](https://media.giphy.com/media/enf5VE8mu4lFVYbt6M/giphy.gif)
 
 					---
 
 					Une bonne pratique pour éviter les **merge conflicts**:
-					1. C'est revenir sur la **branche dev** et de **pull** (pour récupérer les modifications).
+					1. C'est revenir sur la **branche develop** et de **pull** (pour récupérer les modifications).
 
 					```sh
 					$ git branch
-					dev
+					develop
 					navbar
 
-					$ git checkout dev
+					$ git checkout develop
 
 					$ git pull
 					```
 
 					---
 
-					   + Revenir sur la branche sur laquelle vous travaillez et merger cette branche sur la banche dev (gérer les conflits s'il y en a).
+					   + Revenir sur la branche sur laquelle vous travaillez et merger cette branche sur la banche develop (gérer les conflits s'il y en a).
 
 
 					```sh
 					$ git checkout navbar
 
-					$ git merge dev
+					$ git merge develop
 
 					# You make some changes on the files of the navbar branch
 					```
 
-					   + Une fois les modification faite, faire un push suivi d'une pull request sur GitHub.
+					   + Une fois les modifications faites, faire un push suivi d'une pull request sur GitHub.
 
 					```sh
 					$ git add -A
@@ -207,9 +207,9 @@
 
 					# Conclusion :
 
-					  + Créer une *nouvelle branche à partir de la branche dev* (pas master).
-					  + *Soumettre les pull request* sur GitHub par *rapport à la branche dev* (pas par rapport à master).
-					  + Avant de soumettre une pull request sur GitHub *une bonne pratique* et de *récupérer les modifications de de la branche dev* et de régler les conflits de sa branche en interne.
+					  + Créer une *nouvelle branche à partir de la branche develop* (pas master).
+					  + *Soumettre les pull request* sur GitHub par *rapport à la branche develop* (pas par rapport à master).
+					  + Avant de soumettre une pull request sur GitHub *une bonne pratique* et de *récupérer les modifications de de la branche develop* et de régler les conflits de sa branche en interne.
 
 					---
 
@@ -224,13 +224,13 @@
 					$ git branch
 					navbar
 
-					$ git checkout dev
+					$ git checkout develop
 
 					$ git pull
 
 					$ git checkout navbar
 
-					$ git merge dev
+					$ git merge develop
 
 					# You make some changes on the files of the navbar branch
 
