@@ -16,232 +16,245 @@
 <body>
 	<div class="reveal">
 		<div class="slides">
-			<section data-markdown>
-				<section data-template>
-					## GitHub Workflow
-					Comment va-t-on s'organiser grâce à GitHub ?
-					---
-					## O + Offrant
+			<section>
+				<h2 id="github-workflow">GitHub Workflow</h2>
+				<p>Comment va-t-on s&#39;organiser grâce à GitHub ?</p>
+			</section>
+			<section>
+				<h2 id="o-offrant">O + Offrant</h2>
+				<ul>
+					<li>2 projets<ul>
+							<li>Back-end</li>
+							<li>Front-end</li>
+						</ul>
+					</li>
+					<li>Même logique dans GitHub pour la soumission des modifications apporter dans le code.</li>
+				</ul>
+			</section>
+			<section>
+				<h2 id="github-workflow">GitHub workflow</h2>
+				<p>Dans l&#39;ordre des actions <em>recommandées</em></p>
+				<ol>
+					<li>Créer une <strong>branche</strong></li>
+					<li>Faire une modification dans le code</li>
+					<li>Créer une <strong>pull request</strong></li>
+					<li>La review du code</li>
+					<li>Merge votre <strong>pull request</strong></li>
+					<li>Supprimer la branche</li>
+				</ol>
+			</section>
+			<section>
+				<p><img src="./img/architecture-github.png" alt="architecture"></p>
+			</section>
+			<section>
+				<h2 id="1-cr-er-une-branche">1. Créer une branche</h2>
+				<ul>
+					<li>
+						Bonne pratique = ne pas travailler sur la branche <strong>master</strong>
+					</li>
+					<li>
+						Se positionner sur la <strong>branche develop</strong> (development)
+					</li>
+					<li>A partir de la branche develop, créer une branche relative à l&#39;issue.
+						(Exemple ajouter une navbar)
+					</li>
+				</ul>
+				<pre>
+					<code class="lang-sh">
+git checkout develop
+git checkout -b navbar
+					</code>
+				</pre>
+			</section>
+			<section>
+				<h2 id="2-modifier-le-code">2. Modifier le code</h2>
+				<p>Dans la branche navbar</p>
+				<pre>
+					<code class="lang-sh">
+git status
+git add A
+git commit -m "Add search bar to navbar"
+...
+git add -A
+git commit -m "Add logo to navbar"
+					</code>
+				</pre>
+				<ul>
+					<li>Les commentaires des commits doivent être en anglais.</li>
+				</ul>
+				<p>Lorsque que l&#39;on est satisfait des modifications apportées</p>
+				<pre>
+					<code class="lang-sh">git push </code>
+				</pre>
+			</section>
+			<section>
+				<h2 id="3-cr-er-une-pull-request">3. Créer une pull request</h2>
+				<ul>
+					<li>Pour créer une pull request on se retrouve sur GitHub</li>
+				</ul>
+				<p><img src="./img/pull-request.png" alt="pull-request"></p>
+				<ul>
+					<li>Clique sur Compare &amp; pull request</li>
+				</ul>
+			</section>
+			<section>
+				<p><img src="./img/develop-to-branch.png" alt="develop to branch"></p>
+				<p>Et on compare par rapport à la <strong>branche develop</strong></p>
+			</section>
+			<section>
+				<h2 id="4-review-du-code">4. Review du code</h2>
+				<p>Ensuite il y a une review</p>
+				<ul>
+					<li>
+						2 situations possibles
+					</li>
+					<img src="https://media.giphy.com/media/dBdgBKZAQapzoxD668/giphy.gif" alt="2 situations">
+				</ul>
+			</section>
+			<section>
+				<ul>
+					<li>Soit le code est validé = pull request mergée sur la branche develop et l&#39;issue fermée.</li>
+				</ul>
+				<p><img src="https://media.giphy.com/media/Wlmx7EzlZuwNQVtryR/giphy.gif" alt="genius"></p>
+			</section>
+			<section>
+				<ul>
+					<li>
+						Soit il y a discussion, modification puis validation.
+					</li>
+					<img src="https://media.giphy.com/media/l1J9uLBPjqCVIM2GI/giphy.gif" alt="confrontation">
+				</ul>
+			</section>
+			<section>
+				<ul>
+					<li>Il existe un 3ème cas: <strong>les conflits</strong></li>
+					<img src="https://media.giphy.com/media/NTur7XlVDUdqM/giphy.gif" alt="conflits">
+					<p>Des conflits surviennent souvent lorsque des coéquipiers travaillent sur différentes branche
+					</p>
+					<p>s qui affectent un fichier commun.</p>
+				</ul>
+			</section>
+			<section>
+				<p> <img src="img/conflit-pull-request.png" alt="conflit pull request"></p>
+				<p> Sa branche ne reflète plus l&#39;état de la branche <strong>develop</strong> et que la branche
+					develop <strong>a changé parce que quelqu&#39;un d&#39;autre a fusionné</strong> (avant lui)
+					<strong>les changements</strong> affectant son ou ses fichiers.
+				</p>
+			</section>
+			<section>
+				<h3>Ne pas paniquer !!</h3>
+				<p> <img src="https://media.giphy.com/media/1FMaabePDEfgk/giphy.gif" alt="panic"></p>
+			</section>
+			<section>
+				<p> Créer quand même une <strong>pull request</strong></p>
+				<p> <img src="img/create-pull-request.png" alt="create pull request"></p>
+			</section>
 
-					+ 2 projets
-					   + Back-end
-					   + Front-end
-					+ Même logique dans GitHub pour la soumission des modifications apporter dans le code.
-					---
-					## GitHub workflow
+			<section>
+				<p>Essayer de <b>résoudre</b> le conflit</p>
+				<img src="img/resolve-conflicts.png" alt="">
+				<p>Peut être directement résolu depuis l'éditeur de GitHub</p>
+			</section>
+			<section>
+				<p>Si résolu dans GitHub </p>
+				<ul>
+					<li>Appuyer sur <strong>Mark as resolved</strong></li>
+				</ul>
+				<p><img src="img/mark-as-resolve.png" alt="mark as resolved"></p>
+				<ul>
+					<li>Puis cliquer sur le bouton <strong>Commit merge</strong></li>
+				</ul>
+				<p><img src="img/commit-merge.png" alt="commit merge"></p>
+			</section>
+			<section>
+				<p>Ensuite, si tout se passe bien la branche est libérée du conflit et la pull request peut être mergée
+					sur la branche develop.</p>
+				<p><img src="https://media.giphy.com/media/enf5VE8mu4lFVYbt6M/giphy.gif" alt="hourra"></p>
+			</section>
+			<section>
+				<p>Une bonne pratique pour éviter les <strong>merge conflicts</strong>:</p>
+				<ol>
+					<li>C&#39;est revenir sur la <strong>branche develop</strong> et de <strong>pull</strong> (pour
+						récupérer les modifications).</li>
+				</ol>
+				<pre>
+					<code class="lang-sh">
+git branch
+develop
+navbar
 
-					Dans l'ordre des actions *recommandées*
+git checkout develop
+git pull
+					</code>
+				</pre>
+			</section>
+			<section>
+				<ul>
+					<li>
+						Revenir sur la branche sur laquelle vous travaillez et merger cette branche sur la banche
+						develop (gérer les conflits s&#39;il y en a).
+					</li>
+				</ul>
+				<pre>
+					<code class="lang-sh">
+git checkout navbar
 
-					1. Créer une **branche**
-					2. Faire une modification dans le code
-					3. Créer une **pull request**
-					4. La review du code
-					5. Merge votre **pull request**
-					6. Supprimer la branche
-					---
+git merge develop
+# You make some changes on the files of the navbar branch
+					</code>
+				</pre>
+				<ul>
+					<li>Une fois les modifications faites, faire un push suivi d&#39;une pull request sur GitHub.</li>
+				</ul>
+				<pre>
+					<code class="lang-sh">
+git add-A
+git commit -m "Change conflit on navbar"
+git push
+				</code>
+			</pre>
+			</section>
+			<section>
+				<h1 id="conclusion-">Conclusion :</h1>
+				<ul>
+					<li>Créer une <em>nouvelle branche à partir de la branche develop</em> (pas master).</li>
+					<li><em>Soumettre les pull request</em> sur GitHub par <em>rapport à la branche develop</em> (pas
+						par rapport à master).</li>
+					<li>Avant de soumettre une pull request sur GitHub <em>une bonne pratique</em> et de <em>récupérer
+							les modifications de de la branche develop</em> et de régler les conflits de sa branche en
+						interne.</li>
+				</ul>
+			</section>
+			<section>
+				<h1 id="r-f-rences-">Références :</h1>
+				<ul>
+					<li><a href="https://www.freecodecamp.org/news/how-to-use-git-and-github-in-a-team-like-a-pro/">How
+							to Use Git and GitHub in a Team like a Pro</a></li>
+					<li><a href="https://revealjs.com/">reveal.js</a></li>
+				</ul>
+			</section>
+			<section>
+				<pre><code class="lang-sh">
+git branch
+navbar
 
-					![architecture](/img/architecture-github.png)
+git checkout develop
 
-					---
+git pull
 
-					## 1. Créer une branche
+git checkout navbar
 
-					+ Bonne pratique = ne pas travailler sur la branche **master**
+git merge develop
+				
+# You make some changes on the files of the navbar branch</span>
+				
+git add -A
 
-					1. Se positionner sur la **branche develop** (development)
-					2. A partir de la branche develop, créer une branche relative à l'issue.
-					(Exemple ajouter une navbar)
-
-					```sh
-					git checkout develop
-					git checkout -b navbar
-					```
-					---
-
-					## 2. Modifier le code
-
-					Dans la branche navbar
-
-					```sh
-					git status
-					git add -A
-					git commit -m "Add search bar to navbar"
-					...
-					git add -A
-					git commit -m "Add logo to navbar"
-					```
-
-					+ Les commentaires des commits doivent être en anglais.
-
-					Lorsque que l'on est satisfait des modifications apportées
-
-					```sh
-					git push
-					```
-					---
-
-					## 3. Créer une pull request
-
-					+ Pour créer une pull request on se retrouve sur GitHub
-
-					![pull request](/img/pull-request.png)
-
-					+ Clique sur Compare & pull request
-
-					---
-
-					![accross develop branch](/img/develop-to-branch.png)
-
-					Et on compare par rapport à la **branche develop**
-
-					---
-
-					## 4. Review du code
-					Ensuite il y a une review
-
-					   + 2 situations possibles
-
-					   ![2 situations](https://media.giphy.com/media/dBdgBKZAQapzoxD668/giphy.gif)
-					---
-
-					+ Soit le code est validé = pull request mergée sur la branche develop et l'issue fermée.
-
-					![genius](https://media.giphy.com/media/Wlmx7EzlZuwNQVtryR/giphy.gif)
+git commit -m "Change conflit on navbar"
 					
-					---
-
-					   + Soit il y a discussion, modification puis validation.
-					
-					   ![confrontation](https://media.giphy.com/media/l1J9uLBPjqCVIM2GI/giphy.gif)
-
-					---
-
-					   + Il existe un 3ème cas: **les conflits**
-					   ![conflits](https://media.giphy.com/media/NTur7XlVDUdqM/giphy.gif)
-
-					   Des conflits surviennent souvent lorsque des coéquipiers travaillent sur différentes branches qui affectent un fichier commun.
-
-					---
-
-					   ![conflit pull request](img/conflit-pull-request.png)
-
-					   Sa branche ne reflète plus l'état de la branche **develop** et que la branche develop **a changé parce que quelqu'un d'autre a fusionné** (avant lui) **les changements** affectant son ou ses fichiers.
-
-					---
-
-					   Ne pas paniquer !!
-
-					   ![panic](https://media.giphy.com/media/1FMaabePDEfgk/giphy.gif)
-
-					---
-
-					   Créer quand même une **pull request**
-
-					   ![create pull request](img/create-pull-request.png)
-
-					---
-
-						Essayer de **résoudre** le conflit
-
-						![resolve conflit](img/resolve-conflicts.png)
-
-						Peut être directement résolu depuis l'éditeur de GitHub
-
-					---
-
-					Si résolu dans GitHub 
-
-					   + Appuyer sur **Mark as resolved**
-
-					![mark as resolved](img/mark-as-resolve.png)
-
-					   + Puis cliquer sur le bouton **Commit merge**
-
-					![commit merge](img/commit-merge.png)
-
-					---
-
-					Ensuite, si tout se passe bien la branche est libérée du conflit et la pull request peut être mergée sur la branche develop.
-
-					![hourra](https://media.giphy.com/media/enf5VE8mu4lFVYbt6M/giphy.gif)
-
-					---
-
-					Une bonne pratique pour éviter les **merge conflicts**:
-					1. C'est revenir sur la **branche develop** et de **pull** (pour récupérer les modifications).
-
-					```sh
-					$ git branch
-					develop
-					navbar
-
-					$ git checkout develop
-
-					$ git pull
-					```
-
-					---
-
-					   + Revenir sur la branche sur laquelle vous travaillez et merger cette branche sur la banche develop (gérer les conflits s'il y en a).
-
-
-					```sh
-					$ git checkout navbar
-
-					$ git merge develop
-
-					# You make some changes on the files of the navbar branch
-					```
-
-					   + Une fois les modifications faites, faire un push suivi d'une pull request sur GitHub.
-
-					```sh
-					$ git add -A
-
-					$ git commit -m "Change conflit on navbar"
-
-					$ git push
-					```
-
-					---
-
-					# Conclusion :
-
-					  + Créer une *nouvelle branche à partir de la branche develop* (pas master).
-					  + *Soumettre les pull request* sur GitHub par *rapport à la branche develop* (pas par rapport à master).
-					  + Avant de soumettre une pull request sur GitHub *une bonne pratique* et de *récupérer les modifications de de la branche develop* et de régler les conflits de sa branche en interne.
-
-					---
-
-					# Références :
-
-					   + [How to Use Git and GitHub in a Team like a Pro](https://www.freecodecamp.org/news/how-to-use-git-and-github-in-a-team-like-a-pro/)
-					   + [reveal.js](https://revealjs.com/)
-
-					---
-
-					```sh
-					$ git branch
-					navbar
-
-					$ git checkout develop
-
-					$ git pull
-
-					$ git checkout navbar
-
-					$ git merge develop
-
-					# You make some changes on the files of the navbar branch
-
-					$ git add -A
-
-					$ git commit -m "Change conflit on navbar"
-
-					$ git push
-					```
-
-				</section>
+git push
+					</code>
+				</pre>
 			</section>
 		</div>
 	</div>
