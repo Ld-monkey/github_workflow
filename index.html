@@ -215,14 +215,122 @@ git push
 			</pre>
 			</section>
 			<section>
+				<section>
+					<h2>git stash / git stash pop</h2>
+					<img src="https://media.giphy.com/media/1zSz5MVw4zKg0/giphy-downsized-large.gif" alt="ho no">
+				</section>
+				<section>
+					<h2>Situation</h2>
+					<p>Message suivant indiqué par Git</p>
+					<pre>
+						<code>
+git checkout dev
+error: Your local changes to the following files would be overwritten by 
+checkout:
+    index.html
+Please, commit your changes or stash them before you can switch 
+branches.
+						</code>
+					</pre>
+					<pre>
+<p>(en français)</p>
+					<code>
+git checkout dev
+error: Vos modifications locales aux fichiers suivants seraient écrasées par la fusion :
+    index.html
+Veuillez valider ou remiser vos modifications avant la fusion.
+
+					</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Qu'est ce qui se passe ?</h2>
+					<p>Vous n'avez pas <strong>encore validé (commit)</strong> vos modifications et vous risquez de perte votre travail si vous forcez le changement de branche</p>
+					<p><strong>Raison ?</strong></p>
+					<p>
+						Vous voulez changer de branche pour une raison X (souvant faire une pull sur la branche develop)
+						mais git me l'interdit et me demande de soit <em>valider</em> (= git add ., git commit -m "") soit ... <em>remiser</em> (= git stash)
+					</p>					
+				</section>
+				<section>
+					<h2>2 solutions</h2>
+					<ol>
+						<li>Soit vous validez vos modifications avec un commit dans votre branche de travail puis vous changez de branche.</li>
+					</ol>
+					<pre>
+						<code>
+git branch
+develop
+*  navbar
+
+git add .
+git commit -m "commit un peu pourri pour (débloquer) valider la situation et apres changer de branche"
+git checkout develop
+						</code>
+					</pre>
+				</section>
+				<section>
+					<p>2. Soit vous <em>"remiser"</em> vos modifications pour plus tard</p>
+					<pre>
+						<code>
+git branch
+develop
+*  navbar
+
+# Je remise les modifications pour plus tard car je ne suis pas encore près à commiter.
+git stash 
+git checkout develop
+
+# Je regarde bien que je suis sur une autre branche.
+git branch
+*   develop
+navbar
+
+# Je récupère les modifications de la branche develop.
+git pull
+
+# Je retrouve vers ma branche de travail.
+git checkout navbar
+
+# Je libère ma remise (mes modifications).
+git stash pop
+
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>git stash</h2>
+					<p>
+						Le stashing est pratique si :
+					</p>
+					<ul>
+						<li>vous avez besoin de <em>changer</em> rapidement de <strong>contexte</strong> et de <strong>travailler sur autre chose</strong></li>
+						<li>mais que vous êtes en <em>plein dans un changement de code</em> et que n'êtes <strong>pas</strong> tout à fait <strong>prêt à commiter.</strong></li>
+					</ul>
+				</section>
+				<section>
+					<h2>Mini conclusion pour git stash</h2>
+					<ol>
+						<li>Soit vous débloquez la situation avec un commit</li>
+						<li>Soit vous utilisez le stashing pour remiser vos modifications à plus tard</li>
+						<li><strong>Si utilisation de git stash ne pas oublier git stash pop pour libérer la "remise"</strong></li>
+					</ol>
+				</section>
+			</section>
+			<section>
 				<h1 id="conclusion-">Conclusion :</h1>
 				<ul>
 					<li>Créer une <em>nouvelle branche à partir de la branche develop</em> (pas master).</li>
-					<li><em>Soumettre les pull request</em> sur GitHub par <em>rapport à la branche develop</em> (pas
-						par rapport à master).</li>
-					<li>Avant de soumettre une pull request sur GitHub <em>une bonne pratique</em> et de <em>récupérer
+					<li>
+						<em>Soumettre les pull request</em> sur GitHub par <em>rapport à la branche develop</em> (pas
+					par rapport à master).
+					</li>
+					<ul>
+						<li>Avant de soumettre une pull request sur GitHub <em>une bonne pratique</em> et de <em>récupérer
 							les modifications de de la branche develop</em> et de régler les conflits de sa branche en
-						interne.</li>
+						interne.
+						</li>
+					</ul>
 				</ul>
 			</section>
 			<section>
